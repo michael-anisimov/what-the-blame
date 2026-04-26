@@ -1,6 +1,9 @@
 .DS_Store
 .gradle
 .idea
+.run
 .intellijPlatform
 .kotlin
 build
+CLAUDE.md
+application.txt
