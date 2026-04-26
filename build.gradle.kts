@@ -69,6 +69,12 @@ intellijPlatform {
             }
         }
     }
+
+    pluginVerification {
+        ides {
+            recommended()
+        }
+    }
 }
 
 // Configure Gradle Changelog Plugin - read more: https://github.com/JetBrains/gradle-changelog-plugin
