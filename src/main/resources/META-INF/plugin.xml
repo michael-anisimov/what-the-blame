@@ -1,15 +1,40 @@
-<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>com.github.michaelanisimov.whattheblame</id>
-    <name>what-the-blame</name>
+    <name>What the Blame</name>
     <vendor>michael-anisimov</vendor>
 
     <depends>com.intellij.modules.platform</depends>
+    <depends>Git4Idea</depends>
 
-    <resource-bundle>messages.MyBundle</resource-bundle>
+    <resource-bundle>messages.WhatTheBlameBundle</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.michaelanisimov.whattheblame.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
-        <postStartupActivity implementation="com.github.michaelanisimov.whattheblame.startup.MyProjectActivity" />
+        <applicationService serviceInterface="com.github.michaelanisimov.whattheblame.llm.AnthropicClient"
+                            serviceImplementation="com.github.michaelanisimov.whattheblame.llm.AnthropicSdkClient"/>
+
+        <toolWindow id="WhatTheBlame"
+                    anchor="right"
+                    factoryClass="com.github.michaelanisimov.whattheblame.toolwindow.WhatTheBlameToolWindowFactory"
+                    icon="com.github.michaelanisimov.whattheblame.WhatTheBlameIcons.ToolWindow"/>
+
+        <applicationConfigurable parentId="tools"
+                                 id="com.github.michaelanisimov.whattheblame.settings"
+                                 displayName="What the Blame"
+                                 instance="com.github.michaelanisimov.whattheblame.settings.WhatTheBlameConfigurable"/>
+
+        <notificationGroup id="WhatTheBlame"
+                           displayType="BALLOON"
+                           bundle="messages.WhatTheBlameBundle"
+                           key="notification.group.whatTheBlame"/>
     </extensions>
+
+    <actions>
+        <action id="WhatTheBlame.Analyze"
+                class="com.github.michaelanisimov.whattheblame.action.WhatTheBlameAction"
+                icon="com.github.michaelanisimov.whattheblame.WhatTheBlameIcons.Action">
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+            <add-to-group group-id="ConsoleEditorPopupMenu" anchor="last"/>
+            <add-to-group group-id="Vcs.Operations.Popup" anchor="last"/>
+        </action>
+    </actions>
 </idea-plugin>
