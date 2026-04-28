@@ -1,10 +1,6 @@
-# What the Blame
-
+![What the Blame](docs/banner.png)
+![Tool window streaming a narrative](docs/screenshot-toolwindow.png)
 ![Build](https://github.com/michael-anisimov/what-the-blame/workflows/Build/badge.svg)
-
-> An IntelliJ IDEA plugin that turns `git blame` into a story.  
-> Select code → right-click → **What the Blame?** → a narrative streams in explaining what those lines do, who shaped them, and *why* — grounded in commit messages and per-line git history.
-
 <!-- Plugin description -->
 **What the Blame** turns `git blame` into a story.
 
@@ -25,6 +21,8 @@ Under the hood the plugin runs `git log -L<a>,<b>:<file>` and `git blame` for th
 <!-- Plugin description end -->
 
 ## Usage
+
+![Settings panel](docs/screenshot-settings.jpg)
 
 1. **Add your API key** — `Settings / Preferences → Tools → What the Blame → API Key`. Optionally choose a model (`claude-sonnet-4-6` by default), the maximum number of commits, and whether to include diff hunks in the prompt.
 2. **Select code** — any range of lines in a file under git.
